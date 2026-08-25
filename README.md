@@ -5,7 +5,7 @@ Adds wet sand (and red sand) variants
 ## About this fork
 
 This is a modified version of [HearthianDev/wet-sand](https://github.com/HearthianDev/wet-sand),
-released under the same GPL-3.0-only [LICENSE](license).
+released under the same GPL-3.0-only [LICENSE](LICENSE).
 
 Modified here:
 
