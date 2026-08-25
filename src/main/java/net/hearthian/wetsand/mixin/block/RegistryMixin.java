@@ -5,7 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.WritableRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static net.hearthian.wetsand.WetSand.LOGGER;
 import static net.hearthian.wetsand.WetSand.MOD_ID;
 import static net.hearthian.wetsand.utils.initializer.*;
 import static net.hearthian.wetsand.utils.initializer.SAND;
@@ -30,22 +30,22 @@ public interface RegistryMixin {
     // Object to replace type parameters
     private static <V, T> void  onRegister(Registry<@NotNull V> reg, ResourceKey<@NotNull V> id, T entry, CallbackInfoReturnable<Object> cir) {
         if (reg != BuiltInRegistries.BLOCK) return;
-        if (id.identifier().toString().equals("minecraft:sand")) {
+        if (id.location().toString().equals("minecraft:sand")) {
             LOGGER.info("REGISTERING SAND... {} {}", entry, entry.equals(Blocks.SAND));
             ((WritableRegistry) reg).register(id, SAND, RegistrationInfo.BUILT_IN);
-            ((WritableRegistry) reg).register(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, "vanilla_sand")), entry, RegistrationInfo.BUILT_IN);
+            ((WritableRegistry) reg).register(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "vanilla_sand")), entry, RegistrationInfo.BUILT_IN);
             cir.setReturnValue(SAND);
         }
-        if (id.identifier().toString().equals("minecraft:red_sand")) {
+        if (id.location().toString().equals("minecraft:red_sand")) {
             LOGGER.info("REGISTERING RED SAND... {} {}", entry, entry.equals(Blocks.RED_SAND));
             ((WritableRegistry) reg).register(id, RED_SAND, RegistrationInfo.BUILT_IN);
-            ((WritableRegistry) reg).register(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, "vanilla_red_sand")), entry, RegistrationInfo.BUILT_IN);
+            ((WritableRegistry) reg).register(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "vanilla_red_sand")), entry, RegistrationInfo.BUILT_IN);
             cir.setReturnValue(RED_SAND);
         }
-        if (id.identifier().toString().equals("minecraft:suspicious_sand")) {
+        if (id.location().toString().equals("minecraft:suspicious_sand")) {
             LOGGER.info("REGISTERING SUSPICIOUS SAND... {} {}", entry, entry.equals(Blocks.SUSPICIOUS_SAND));
             ((WritableRegistry) reg).register(id, SUSPICIOUS_SAND, RegistrationInfo.BUILT_IN);
-            ((WritableRegistry) reg).register(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MOD_ID, "vanilla_suspicious_sand")), entry, RegistrationInfo.BUILT_IN);
+            ((WritableRegistry) reg).register(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MOD_ID, "vanilla_suspicious_sand")), entry, RegistrationInfo.BUILT_IN);
             cir.setReturnValue(SUSPICIOUS_SAND);
         }
     }

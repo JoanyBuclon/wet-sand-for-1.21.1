@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static net.hearthian.wetsand.utils.initializer.initBlockItems;
+import static net.hearthian.wetsand.utils.initializer.initBrushableBlocks;
 import static net.hearthian.wetsand.utils.initializer.initCreativePlacement;
+import static net.hearthian.wetsand.utils.initializer.initWorldGen;
 
 public class WetSand implements ModInitializer {
     public static final String MOD_ID = "wet-sand";
@@ -25,7 +27,9 @@ public class WetSand implements ModInitializer {
 
         LOGGER.info("Initializing...");
         initBlockItems();
+        initBrushableBlocks();
         initCreativePlacement();
+        initWorldGen();
         // Register events
         Events.registerDry();
     }

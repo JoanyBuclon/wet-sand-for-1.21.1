@@ -3,15 +3,19 @@
 	"id": "wet-sand",
 	"version": "${version}",
 	"name": "Wet sand",
-	"description": "Adds wet sand variants",
+	"description": "Adds wet sand variants. Fork of HearthianDev/wet-sand to run on Minecraft 1.21.1. Also adds wet sand around water during world gen (feature pass)",
 	"authors": [
 		"HearthianDev"
 	],
+	"contributors": [
+		"Joany Buclon"
+	],
 	"contact": {
-		"homepage": "https://github.com/HearthianDev",
-		"sources": "https://github.com/HearthianDev/wet-sand"
+		"homepage": "https://github.com/JoanyBuclon/wet-sand",
+		"sources": "https://github.com/JoanyBuclon/wet-sand",
+		"issues": "https://github.com/JoanyBuclon/wet-sand/issues"
 	},
-	"license": "GPL-3.0",
+	"license": "GPL-3.0-only",
 	"icon": "assets/wet-sand/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -27,11 +31,8 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.10",
-		"minecraft": "~1.21.4",
+		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
