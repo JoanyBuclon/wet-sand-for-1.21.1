@@ -1,4 +1,4 @@
-# Wet sand
+# Wet sand for Fabric
 
 Adds wet sand (and red sand) variants
 
