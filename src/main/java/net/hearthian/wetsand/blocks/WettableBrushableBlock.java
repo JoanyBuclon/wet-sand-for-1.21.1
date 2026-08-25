@@ -31,10 +31,10 @@ public class WettableBrushableBlock extends BrushableBlock implements Wettable {
     @Override
     public void tick(@NotNull BlockState state, ServerLevel world, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (world.getBlockEntity(pos) instanceof BrushableBlockEntity brushableBlockEntity) {
-            brushableBlockEntity.checkReset(world);
+            brushableBlockEntity.checkReset();
         }
 
-        if (humidityLevel.ordinal() <= 1 && FallingBlock.isFree(world.getBlockState(pos.below())) && pos.getY() >= world.getMinY()) {
+        if (humidityLevel.ordinal() <= 1 && FallingBlock.isFree(world.getBlockState(pos.below())) && pos.getY() >= world.getMinBuildHeight()) {
             FallingBlockEntity fallingBlockEntity = FallingBlockEntity.fall(world, pos, state);
             fallingBlockEntity.disableDrop();
         }

@@ -7,7 +7,7 @@ import com.mojang.serialization.Codec;
 import net.hearthian.wetsand.utils.BrushableBlockEntityAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.StringRepresentable;
@@ -38,6 +38,12 @@ public interface Wettable {
   );
   Supplier<BiMap<Object, Object>> HUMIDITY_LEVEL_DECREASES = Suppliers.memoize(() -> Objects.requireNonNull(HUMIDITY_LEVEL_INCREASES.get()).inverse());
 
+  /** Chebyshev distance. {@code Vec3i.distChessboard} does not exist before 1.21.2. */
+  static int chessboardDistance(BlockPos from, BlockPos to) {
+    return Math.max(Math.abs(from.getX() - to.getX()),
+      Math.max(Math.abs(from.getY() - to.getY()), Math.abs(from.getZ() - to.getZ())));
+  }
+
   HumidityLevel getHumidityLevel();
 
   default Optional<BlockState> tryDrench(BlockState state, ServerLevel world, BlockPos pos) {
@@ -47,7 +53,7 @@ public interface Wettable {
 
     BlockPos.findClosestMatch(pos, HUMIDITY_RANGE, HUMIDITY_RANGE, (conditionPos) -> {
       if (world.getFluidState(conditionPos).is(Fluids.WATER) || world.getFluidState(conditionPos).is(Fluids.FLOWING_WATER)) {
-        int distance = conditionPos.distChessboard(pos);
+        int distance = chessboardDistance(conditionPos, pos);
         if ((HUMIDITY_RANGE - currentLevel) >= distance) {
           maxHumidityLevel.set(HUMIDITY_RANGE - distance + 1);
           return true;
@@ -63,7 +69,7 @@ public interface Wettable {
       if (world.getFluidState(conditionPos).is(Fluids.WATER)) {
         return this.getHumidityResult(state);
       }
-      if (world.getBlockState(conditionPos).is(TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("wet-sand", "wettable")))) {
+      if (world.getBlockState(conditionPos).is(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("wet-sand", "wettable")))) {
         if (world.getBlockState(conditionPos).getBlock() instanceof Wettable wettable) {
           int humidityLevel = wettable.getHumidityLevel().ordinal();
 

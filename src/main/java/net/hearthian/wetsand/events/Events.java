@@ -5,7 +5,7 @@ import net.hearthian.wetsand.blocks.Wettable;
 import net.hearthian.wetsand.utils.BrushableBlockEntityAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
@@ -21,7 +21,7 @@ public class Events {
 
             if (!player.isSpectator()
                 && world instanceof ServerLevel serverWorld
-                && state.is(TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("wet-sand", "wettable")))
+                && state.is(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("wet-sand", "wettable")))
             ) {
                 if (player.getItemInHand(hand).is(Items.GLASS_BOTTLE) && state.getBlock() instanceof Wettable wettableBlock) {
                     BlockPos pos = blockHit.getBlockPos();

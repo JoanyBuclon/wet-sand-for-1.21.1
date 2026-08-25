@@ -3,30 +3,30 @@
   "category": "building",
   "group": "concrete",
   "ingredients": [
-    "minecraft:black_dye",
-    "gravel",
-    "gravel",
-    "gravel",
-    "gravel",
+    { "item": "minecraft:black_dye" },
+    { "item": "gravel" },
+    { "item": "gravel" },
+    { "item": "gravel" },
+    { "item": "gravel" },
     [
-      "wet-sand:moist_sand",
-      "wet-sand:wet_sand",
-      "wet-sand:soaked_sand"
+      { "item": "wet-sand:moist_sand" },
+      { "item": "wet-sand:wet_sand" },
+      { "item": "wet-sand:soaked_sand" }
     ],
     [
-      "wet-sand:moist_sand",
-      "wet-sand:wet_sand",
-      "wet-sand:soaked_sand"
+      { "item": "wet-sand:moist_sand" },
+      { "item": "wet-sand:wet_sand" },
+      { "item": "wet-sand:soaked_sand" }
     ],
     [
-      "wet-sand:moist_sand",
-      "wet-sand:wet_sand",
-      "wet-sand:soaked_sand"
+      { "item": "wet-sand:moist_sand" },
+      { "item": "wet-sand:wet_sand" },
+      { "item": "wet-sand:soaked_sand" }
     ],
     [
-      "wet-sand:moist_sand",
-      "wet-sand:wet_sand",
-      "wet-sand:soaked_sand"
+      { "item": "wet-sand:moist_sand" },
+      { "item": "wet-sand:wet_sand" },
+      { "item": "wet-sand:soaked_sand" }
     ]
   ],
   "result": {
