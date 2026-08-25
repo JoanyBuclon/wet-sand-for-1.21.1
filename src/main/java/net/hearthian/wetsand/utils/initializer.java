@@ -1,10 +1,15 @@
 package net.hearthian.wetsand.utils;
 
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.hearthian.wetsand.blocks.*;
 import net.hearthian.wetsand.mixin.block.BlockEntityTypeAccessor;
+import net.hearthian.wetsand.worldgen.WetBeachFeature;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
@@ -14,6 +19,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -101,6 +108,18 @@ public class initializer {
 
         Collections.addAll(validBlocks, MOIST_SUSPICIOUS_SAND, WET_SUSPICIOUS_SAND, SOAKED_SUSPICIOUS_SAND);
         accessor.wet_sand$setValidBlocks(Set.copyOf(validBlocks));
+    }
+
+    /** Wets the sand around water at generation, instead of leaving it all to the random ticks. */
+    public static void initWorldGen() {
+        ResourceLocation id = ResourceLocation.fromNamespaceAndPath(MOD_ID, "wet_beach");
+
+        Registry.register(BuiltInRegistries.FEATURE, id, new WetBeachFeature(NoneFeatureConfiguration.CODEC));
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Decoration.TOP_LAYER_MODIFICATION,
+            ResourceKey.create(Registries.PLACED_FEATURE, id)
+        );
     }
 
     public static void initCreativePlacement() {
