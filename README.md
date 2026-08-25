@@ -2,6 +2,8 @@
 
 Adds wet sand (and red sand) variants
 
+![Wet sand](docs/wet-sand.jpg)
+
 ## About this fork
 
 This is a modified version of [HearthianDev/wet-sand](https://github.com/HearthianDev/wet-sand),
