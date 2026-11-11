@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "ingredient": [
+    { "item": "wet-sand:moist_red_sand" },
+    { "item": "wet-sand:wet_red_sand" },
+    { "item": "wet-sand:soaked_red_sand" }
+  ],
+  "result": {
+    "id": "minecraft:red_sand"
+  },
+  "experience": 0.1
+}
